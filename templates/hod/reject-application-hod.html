@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/view-faculty-application.css' %}">
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}
+<br><br><br>
+
+<div class="container-req-form">
+   <form action="action_page.php">
+
+     <h1>To, Director</h1>
+
+     <h3>from, Ashish Waykar</h3>
+
+     <h3>Title :- To Take the leave</h3>
+
+     <label for="subject"><u>Reason for Rejection:-</u></label>
+     <textarea id="subject" name="subject" placeholder="Write the reason for rejection of form" style="height:200px"></textarea>
+
+     <input type="submit" value="Cancel">
+     <input type="submit" value="Reject">
+
+   </form>
+ </div>
+{% endblock  %}
+{% block foot %}
+
+{% endblock  %}

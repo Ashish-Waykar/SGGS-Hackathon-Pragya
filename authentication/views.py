@@ -112,9 +112,12 @@ def dashboard(request):
         if request.user.is_authenticated:
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
+        appln=application.objects.filter(publisher_user=request.user).order_by('-datetime')
 
         context={
         "userprofile":userprofile,
+        "appln":appln,
+
         'auth':auth,
         }
         return render(request,"faculty/dashboard.html",context)
@@ -124,8 +127,11 @@ def dashboard(request):
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
 
+        appln=application.objects.filter(publisher_user=request.user).order_by('-datetime')
+
         context={
         "userprofile":userprofile,
+        "appln":appln,
         'auth':auth,
         }
         return render(request,"student/dashboard.html",context)
@@ -134,10 +140,13 @@ def dashboard(request):
         if request.user.is_authenticated:
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
-
+        appln_stu=application.objects.filter(status='Submited',is_published_by_student=True).order_by('-datetime')
+        appln_fac=application.objects.filter(status='Submited',is_published_by_faculty=True).order_by('-datetime')
         context={
         "userprofile":userprofile,
         'auth':auth,
+        "appln_stu":appln_stu,
+        "appln_fac":appln_fac,
         }
         return render(request,"hod/dashboard.html",context)
     if request.user.is_director:
@@ -186,3 +195,32 @@ def edit_profile(request):
         'userprofile':userprofile,
         }
     return render(request, 'profile/edit_profile.html',context)
+
+
+
+def hod_student_application_details(request,application_no):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    appln=application.objects.get(application_id=application_no)
+    print(appln)
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'appln':appln,
+    }
+    return render(request,"hod/view-application-student.html",context)
+def hod_faculty_application_details(request,application_no):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    appln=application.objects.get(application_id=application_no)
+    print(appln)
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'appln':appln,
+    }
+    return render(request,"hod/view-application-faculty.html",context)

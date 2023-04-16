@@ -160,70 +160,33 @@
 
                       <div class="left-side-pane">
 
-                        <div class="card-pane">
-                          <div class="title-card-pane">
+                        {% for d in appln %}
+                            <div class="card-pane">
+                              <div class="title-card-pane">
+                                {{d.title}}
+                              </div>
+                              <div class="content-card-pane">
+                              {{d.content}}
+
+                              </div><br>
+                              <div class="bottom-card-pane">
+                                <a href="{% url 'faculty_application_details' d.application_id %}"class='btn btn-info'style="height:40px">view details</a>
+                                {% if d.status == 'Submited' %}
+                                <a class='alert alert-info'style="height:40px;text-decoration:none">{{d.status}}</a>
+                                {% elif d.status == 'Accepted Level 1'  %}
+                                  <a class='alert alert-warning'style="height:40px;text-decoration:none">{{d.status}}</a>
+                                {% elif d.status == 'Approoved'  %}
+                                  <a class='alert alert-success'style="height:40px;text-decoration:none">{{d.status}}</a>
+                                {% elif d.status == 'Rejected'  %}
+                                  <a class='alert alert-danger'style="height:40px;text-decoration:none">{{d.status}}</a>
+                                {% endif  %}
 
 
 
-                            Need Approoval
-                          </div>
-                          <div class="content-card-pane">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-                          </div><br>
-                          <div class="bottom-card-pane">
-                            <a href=""class='btn btn-info'style="height:40px">view details</a>
-                            <a href=""class='alert alert-info'style="height:40px;">status</a>
-
-                          </div>
-                        </div><br>
-
-                        <div class="card-pane">
-                          <div class="title-card-pane">
-
-                            Need Approoval
-                          </div>
-                          <div class="content-card-pane">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                          </div><br>
-                          <div class="bottom-card-pane">
-                            <a href=""class='btn btn-info'style="height:40px">view details</a>
-                            <a href=""class='alert alert-warning'style="height:40px;">status</a>
-
-                          </div>
-                        </div><br>
-                        <div class="card-pane">
-                          <div class="title-card-pane">
-
-                            Need Approoval
-                          </div>
-                          <div class="content-card-pane">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                          </div><br>
-                          <div class="bottom-card-pane">
-                            <a href=""class='btn btn-info'style="height:40px">view details</a>
-                            <a href=""class='alert alert-danger'style="height:40px;">status</a>
-
-                          </div>
-                        </div>
-                        <br>
-                        <div class="card-pane">
-                          <div class="title-card-pane">
-
-                            Need Approoval
-                          </div>
-                          <div class="content-card-pane">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                          </div><br>
-                          <div class="bottom-card-pane">
-                            <a href=""class='btn btn-info'style="height:40px">view details</a>
-                            <a href=""class='alert alert-success'style="height:40px;">status</a>
-
-                          </div>
-                        </div>
+                              </div>
+                            </div><br>
+                      {% endfor %}
                       </div>
 
                     </div>

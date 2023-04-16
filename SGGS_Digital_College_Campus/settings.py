@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+'django_extensions',
     'authentication',
     'student',
     'faculty',
@@ -75,6 +75,7 @@ TEMPLATES = [
     },
 ]
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 WSGI_APPLICATION = 'SGGS_Digital_College_Campus.wsgi.application'
 AUTH_USER_MODEL = 'authentication.Account'
 

@@ -16,7 +16,7 @@ body{
   justify-content: space-between;
   padding: 10px;
   /* width:100%; */
-  margin-left:20px;margin-right:20px;border-radius:12px;
+margin-left:20px;margin-right:20px;border-radius:12px;
   /* border: 0.1rem rgb(255, 47, 231); */
 
   /* width: 40px; */
@@ -26,8 +26,8 @@ body{
 
   /* box-shadow:
     0 0 60px 30px #fff,  /* inner white */
-    /* 0 0 100px 40px #f0f, /* middle magenta */ 
-    /* 0 0 140px 90px #0ff; /* outer cyan */
+    /* 0 0 100px 40px #f0f, /* middle magenta */ */
+    /* 0 0 140px 90px #0ff; /* outer cyan */ */ */
 }
 
 #p1{

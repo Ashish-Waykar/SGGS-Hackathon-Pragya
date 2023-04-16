@@ -4,16 +4,16 @@
 {% block head %}
 <link rel="stylesheet" href="{% static '/css/style-login.css' %}">
 <style media="screen">
-  /* body{
-    background-color:hsla(0,100%,88%,1);
-
+  body{
+   background-color:hsla(0,100%,88%,0.6);
+/* background-repeat:no-repeat ; */
 background-image:
 radial-gradient(at 80% 0%, hsl(31, 100%, 95%) 0px, transparent 50%),
-radial-gradient(at 0% 50%, hsl(60, 100%, 70%) 0px, transparent 50%),
+/* radial-gradient(at 0% 50%, hsl(60, 100%, 70%) 0px, transparent 50%), */
 radial-gradient(at 80% 50%, hsl(60, 100%, 95%) 0px, transparent 50%),
 radial-gradient(at 0% 100%, hsl(120, 100%, 95%) 0px, transparent 50%),
 radial-gradient(at 0% 0%, hsl(216, 100%, 95%) 0px, transparent 50%);
-  } */
+ }
 </style>
 {% endblock head %}
 
@@ -110,8 +110,8 @@ radial-gradient(at 0% 0%, hsl(216, 100%, 95%) 0px, transparent 50%);
           </div>
 
           <span> use your account</span>
-          <input type="email"name="email" placeholder="Email" />
-          <input type="password" name="password"placeholder="Password" />
+          <input type="email"name="email" required placeholder="Email" />
+          <input type="password" name="password"required placeholder="Password" />
           <a href="#">Forgot your password?</a>
           <br>
           <br>
@@ -137,7 +137,7 @@ radial-gradient(at 0% 0%, hsl(216, 100%, 95%) 0px, transparent 50%);
       </div>
     </div>
 
-    <footer>
+    <!-- <footer>
       <p>
         Created with <i class="fa fa-heart"></i> by
         <a target="_blank" href="#">Kunal™️</a>
@@ -148,7 +148,7 @@ radial-gradient(at 0% 0%, hsl(216, 100%, 95%) 0px, transparent 50%);
           >here</a
         >.
       </p>
-    </footer>
+    </footer> -->
 
 
 {% endblock body %}

@@ -52,6 +52,7 @@ def student_application_details(request,application_no):
         auth=UserProfile.objects.get(user_id=request.user.id)
     userprofile=UserProfile.objects.get(user_id=request.user.id)
     appln=application.objects.get(application_id=application_no)
+    print(appln)
     context={
     "userprofile":userprofile,
     'auth':auth,
