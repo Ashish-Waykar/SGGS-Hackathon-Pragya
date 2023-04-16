@@ -1,0 +1,250 @@
+.dashboard{
+  height:100%
+}
+body{
+  margin:auto;
+}
+
+
+.container-grid{
+  /* background-color: rgba(255, 255, 132,0.3); */
+  background-color: white;
+  /* color: rgb(255, 255, 255); */
+  display: flex;
+  text-align: center;
+  align-items: space;
+  justify-content: space-between;
+  padding: 10px;
+  /* width:100%; */
+margin-left:20px;margin-right:20px;border-radius:12px;
+  /* border: 0.1rem rgb(255, 47, 231); */
+
+  /* width: 40px; */
+  /* height: 40px; */
+  /* border-radius: 50%; */
+  /* background-color: #eee; */
+
+  /* box-shadow:
+    0 0 60px 30px #fff,  /* inner white */
+    /* 0 0 100px 40px #f0f, /* middle magenta */ */
+    /* 0 0 140px 90px #0ff; /* outer cyan */ */ */
+}
+
+#p1{
+  /* border: 0.1rem solid black; */
+  text-align: center;
+  align-items: center;
+  /* padding: 10px; */
+}
+
+#p2{
+  /* border: 0.1rem solid black; */
+}
+
+#p3{
+  border: 1px solid black;
+}
+
+
+.profile-card{
+  padding:20px;
+  margin:20px;
+  /* border: 1px solid black; */
+  /* background: cyan; */
+  background: #009688;
+  width:20%;
+  color:white;
+  border-radius:12px;
+}
+
+.profile-card .profile-picture img{
+  padding:20px;
+  justify-content: center;
+  /* border: 1px solid black; */
+  /* background: cyan; */
+
+  width:90%;
+  border-radius : 200px;
+}
+.profile-card .card-content p{
+font-size:16px
+}
+
+.head-one{
+  display: flex;
+  gap:10px
+}
+/* the side of main card  */
+.managed-contents{
+  background-color: red;
+  width:75%;
+  border-radius:20px;
+  margin:20px;
+  max-height:440px;
+}
+
+.section-grid{
+  display:flex;
+}
+.managed-contents-one{
+  flex:50%;
+  height:222.5px;
+  /* background: #ffe6cc; */
+  background: #f44336;
+  border:1px solid #ff8400;
+  color:white;
+
+  border-top-left-radius: 20px
+}
+.managed-contents-two{
+  flex:50%;
+  height:222.5px;
+  background: #e81e63;
+  /* background: #ffcccc; */
+  border:1px solid #ff6666;
+  color:white;
+
+  border-top-right-radius: 20px
+
+}
+.managed-contents-three{
+  flex:50%;
+  height:222.5px;
+  /* background: #ffccff; */
+background: #9c27b0;
+border:1px solid #ff33ff;
+color:white;
+border-bottom-left-radius: 20px
+
+}
+.managed-contents-four{
+  flex:50%;
+  height:222.5px;
+  background: #673ab7;
+  /* background: #ccffcc; */
+  border:1px solid #1aff1a;
+  color:white;
+
+
+  border-bottom-right-radius: 20px
+
+}
+
+.managed-contents-contents{
+  font-size:80px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.managed-contents-contents h4{
+  font-size:4 0px;
+}
+/* head-two */
+.head-two{
+  display: flex;
+  gap:30px;
+  margin-left:20px;
+  margin-right:20px;
+}
+.left-side-pane{
+  background: #d1e0e0;
+  height:700px;
+  overflow-y: scroll;
+
+  border-radius:10px;
+  padding:10px;
+  flex:50%;
+}
+
+.right-side-pane{
+  background: #f2f2f2;
+  height:700px;
+  overflow-y: scroll;
+  border-radius:10px;
+  padding:10px;
+  flex:50%;
+}
+
+.card-pane{
+  background:white;
+  border-radius:5px;
+  padding:10px;
+
+}
+.title-card-pane{
+  font-size:16px;
+  font-weight:700;
+}
+
+.content-card-pane{
+  max-width:100%;
+  display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.bottom-card-pane{
+  display:flex;
+  justify-content: space-between;
+}
+.title-label h2 {
+  font-size:25px;
+  font-weight:500
+}
+.card-last-notice img{
+  width:500px;
+}
+a{border: none;
+  text-decoration:none;
+}
+
+
+
+
+.container-grid-two{
+  /* background-color: rgba(255, 92, 51,0.3); */
+  background-color: white;
+  height:460px;
+
+  /* color: rgb(255, 255, 255); */
+  display: flex;
+  text-align: center;
+  align-items: space;
+  justify-content: space-between;
+  padding: 10px;
+margin-left:20px;margin-right:20px;border-radius:12px;
+  /* border: 0.1rem rgb(255, 47, 231); */
+
+  /* background-color: #f3f3f3; */
+}
+
+#p1{
+  border: 0.1rem solid black;
+  text-align: center;
+  align-items: center;
+  /* padding: 10px; */
+}
+
+#p2{
+  border: 0.1rem solid black;
+}
+
+#p3{
+  border: 0.1rem solid black;
+}
+
+.img-latest_trends_dept{
+  width:800px;
+
+  object-fit: cover;
+}
+.img-latest_trends_dept-left{
+  height:200px;
+  border-radius:10px;
+  object-fit:  contain;
+
+}

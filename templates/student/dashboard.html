@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/student-dashboard.css' %}">
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}
+<br><br><br>
+<div class="dashboard">
+  {% include 'includes/alerts.html'%}
+  <div class="head-one">
+    <div class="profile-card">
+      <div class="profile-picture">
+        <img src="{{userprofile.qr_code.url}}" alt="">
+      </div>
+      <div class="card-content">
+        <p><b><i class="fa-solid fa-file-signature"></i> &nbsp;</b>{{userprofile.user.full_name}}</p>
+        <p><b><i class="fa-solid fa-cake-candles"></i> &nbsp;</b>&nbsp;{{userprofile.user.dob}}</p>
+        <p><b><i class="fa-solid fa-envelope"></i> &nbsp;</b>{{userprofile.user.email}}</p>
+        <p><b><i class="fa-solid fa-phone"></i>&nbsp </b>{{userprofile.user.phone_number}}</p>
+      </div>
+    </div>
+    <div class="managed-contents">
+      <div class="section-grid">
+
+        <div class="managed-contents-one">
+          <div class="managed-contents-contents">
+            <div class="main-managed-contents">
+              <i class="fa-solid fa-graduation-cap"></i> 8
+
+            </div>
+            <h4>Students</h4>
+
+          </div>
+        </div>
+        <div class="managed-contents-two">
+          <div class="managed-contents-contents">
+            <div class="main-managed-contents">
+              <i class="fa-solid fa-user-tie"></i> 8
+
+            </div>
+            <h4>Faculties</h4>
+
+          </div>
+        </div>
+      </div>
+      <div class="section-grid">
+
+        <div class="managed-contents-three">
+          <div class="managed-contents-contents">
+            <div class="main-managed-contents">
+            <i class="fa-solid fa-note"></i> 13
+
+            </div>
+            <h4>Applications</h4>
+
+          </div>
+
+        </div>
+        <div class="managed-contents-four">
+<a href="{% url 'write_application_student' %}"style="color:white;">
+          <div class="managed-contents-contents">
+            <div class="main-managed-contents">
+            <i class="fa-regular fa-pen-to-square"></i> 7
+
+            </div>
+            <h4>Create Application</h4>
+
+          </div>
+        </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <h4>&nbsp;From College Events  </h4>
+  <div class="container-grid">
+
+    <div class="col-12">
+      <div class="row">
+        <div class="col-8" style="border:1px solid black">
+          <div class="pleft" id="">
+
+            <h1>Check Out New</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+              aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+
+        </div>
+        <div class="col-4">
+          <img src="https://www.sggs.ac.in/uploads/home_banner/1681119070.png" class="img-latest_trends_dept-left"alt="">
+          <br>
+          <br>
+          <img src="https://www.sggs.ac.in/uploads/home_banner/1681119070.png" class="img-latest_trends_dept-left"alt="">
+        </div>
+      </div>
+    </div>
+
+      </div>
+
+<br><br>
+
+<h4>&nbsp;From Departmental Events  </h4>
+<div class="container-grid-two"style="">
+
+
+  <div class="col-12">
+    <div class="row">
+      <div class="col-4">
+        <img src="https://www.sggs.ac.in/uploads/home_banner/1681119070.png" class="img-latest_trends_dept-left"alt="">
+        <br>
+        <br>
+        <img src="https://www.sggs.ac.in/uploads/home_banner/1681119070.png" class="img-latest_trends_dept-left"alt="">
+      </div>
+      <div class="col-8"style="border:1px solid black">
+        <div class="pleft" id="">
+
+          <h1>Check Out New </h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.<br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+          </div>
+<br>
+  <div class="head-two">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6">
+
+          <div class="title-label">
+            <h2> Your Student Approovals</h2>
+
+            <div class="left-side-pane">
+
+              <div class="card-pane">
+                <div class="title-card-pane">
+
+
+
+                  Need Approoval
+                </div>
+                <div class="content-card-pane">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                </div><br>
+                <div class="bottom-card-pane">
+                  <a href=""class='btn btn-info'style="height:40px">view details</a>
+                  <a href=""class='alert alert-info'style="height:40px;">status</a>
+
+                </div>
+              </div><br>
+
+              <div class="card-pane">
+                <div class="title-card-pane">
+
+                  Need Approoval
+                </div>
+                <div class="content-card-pane">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                </div><br>
+                <div class="bottom-card-pane">
+                  <a href=""class='btn btn-info'style="height:40px">view details</a>
+                  <a href=""class='alert alert-warning'style="height:40px;">status</a>
+
+                </div>
+              </div><br>
+              <div class="card-pane">
+                <div class="title-card-pane">
+
+                  Need Approoval
+                </div>
+                <div class="content-card-pane">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                </div><br>
+                <div class="bottom-card-pane">
+                  <a href=""class='btn btn-info'style="height:40px">view details</a>
+                  <a href=""class='alert alert-danger'style="height:40px;">status</a>
+
+                </div>
+              </div>
+              <br>
+              <div class="card-pane">
+                <div class="title-card-pane">
+
+                  Need Approoval
+                </div>
+                <div class="content-card-pane">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                </div><br>
+                <div class="bottom-card-pane">
+                  <a href=""class='btn btn-info'style="height:40px">view details</a>
+                  <a href=""class='alert alert-success'style="height:40px;">status</a>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+          <div class="col-6">
+
+            <div class="title-label">
+              <h2> Recent Notices</h2>
+
+              <div class="left-side-pane">
+
+                <div class="card-pane">
+                  <div class="title-card-pane">
+
+
+
+                    Need Approoval
+                  </div>
+                  <div class="content-card-pane">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                  </div><br>
+                  <div class="bottom-card-pane">
+                    <a href=""class='btn btn-info'style="height:40px">view details</a>
+                    <a href=""class='alert alert-info'style="height:40px;">status</a>
+
+                  </div>
+                </div><br>
+
+                <div class="card-pane">
+                  <div class="title-card-pane">
+
+                    Need Approoval
+                  </div>
+                  <div class="content-card-pane">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                  </div><br>
+                  <div class="bottom-card-pane">
+                    <a href=""class='btn btn-info'style="height:40px">view details</a>
+                    <a href=""class='alert alert-warning'style="height:40px;">status</a>
+
+                  </div>
+                </div><br>
+                <div class="card-pane">
+                  <div class="title-card-pane">
+
+                    Need Approoval
+                  </div>
+                  <div class="content-card-pane">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                  </div><br>
+                  <div class="bottom-card-pane">
+                    <a href=""class='btn btn-info'style="height:40px">view details</a>
+                    <a href=""class='alert alert-danger'style="height:40px;">status</a>
+
+                  </div>
+                </div>
+                <br>
+                <div class="card-pane">
+                  <div class="title-card-pane">
+
+                    Need Approoval
+                  </div>
+                  <div class="content-card-pane">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+                  </div><br>
+                  <div class="bottom-card-pane">
+                    <a href=""class='btn btn-info'style="height:40px">view details</a>
+                    <a href=""class='alert alert-success'style="height:40px;">status</a>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <section class="col-12"style="background-color:white;padding:20px">
+    <div class="row">
+      <figure class="col-3"style="height: 250px;"><img src="https://www.sggs.ac.in/uploads/director/Img-3-181.jpeg" style="width: auto; height: 250px;" alt="image description">
+      </figure>
+      <div class="col-8">
+        <h2>Welcome &amp; Greetings!</h2>
+        <div class="tg-description">
+          <p style=""></p><p>Dear Students,<br>I welcome you to Shri Guru Gobind Singhji Institute of Engineering and Technology, Vishnupuri, Nanded. This is one of the prestigious institutes in the state of Maharashtra. This institute provides you the opportunities to empower you with the present technologies. The faculty in the institute is ever enthusiastic to familiarize the students in future technology trends. You are encouraged to harness your inquisitive skills with proactive learning. The purpose of education is to transform proactive learners into self-actualized learners and our experience confirms us that every self-actualized learner flourishes.&nbsp; <a href="https://sggs.ac.in/Home/page/director-message">More...</a></p><p></p>
+        </div>
+        <span class="tg-name">Dr. Yashwant V. Joshi</span>
+        <span class="tg-designation">Director</span>
+
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock  %}
+{% block foot %}
+
+{% endblock  %}

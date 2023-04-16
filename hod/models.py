@@ -20,7 +20,7 @@ class department(models.Model):
     ('Textile','Textile')
     }
     department_name=models.CharField(max_length=300,choices=departments,blank=False,null=False )
-    department_HOD=models.ForeignKey(Account,on_delete=models.CASCADE,limit_choices_to={'is_faculty': True},blank=True,null=True )
+    department_HOD=models.ForeignKey(Account,on_delete=models.CASCADE,limit_choices_to={'is_hod': True},blank=True,null=True )
     datetime=models.DateTimeField(auto_now_add=True,null=True,blank=True)
     def __str__(self):
         return self.department_name

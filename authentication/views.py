@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib import messages , auth
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
+from .models import *
+from .forms import *
+from hod.models import *
+from student.models import *
 # Create your views here.
 
 def register(request):
@@ -10,7 +14,10 @@ def register(request):
     company=False
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+        # print(form)
+        print(form.errors)
         if form.is_valid():
+
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             phone_number = form.cleaned_data['phone_number']
@@ -37,20 +44,21 @@ def register(request):
             stu.user=user
             stu.save()
             # User Activation
-            current_site= get_current_site(request)
-            mail_subject = "New Account Activation Verify Your Email "
-            message = render_to_string('mails/registration_verification_email.html',{
-                'user': user,
-                'domain':current_site,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':default_token_generator.make_token(user),
+            # current_site= get_current_site(request)
+            # mail_subject = "New Account Activation Verify Your Email "
+            # message = render_to_string('mails/registration_verification_email.html',{
+            #     'user': user,
+            #     'domain':current_site,
+            #     'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token':default_token_generator.make_token(user),
+            #
+            # })
+            # to_email=email
+            # send_email=EmailMessage(mail_subject,message,to=[to_email])
+            # send_email.content_subtype='html'
+            # send_email.send()
 
-            })
-            to_email=email
-            send_email=EmailMessage(mail_subject,message,to=[to_email])
-            send_email.content_subtype='html'
-            send_email.send()
-            # messages.success(request,'Thank You for registaring with us ,Please Go Through Your Email to activate your account  ...')
+            messages.success(request,'Thank You for registaring with us ,Please Go Through Your Email to activate your account  ...')
             return redirect('/authentication/login/?command=verification&email='+email)
     else:
         form = RegistrationForm()
@@ -58,7 +66,7 @@ def register(request):
     'form':form,
     # 'newsletter_form': newsletter_form,
     }
-    return render(request,'authentication/register.html',context)
+    return render(request,'authentication/login-register.html',context)
 
 def login(request):
     if request.user.is_authenticated:
@@ -84,7 +92,12 @@ def login(request):
             messages.error(request,' Invalid Login Credentials ! ')
             return redirect('login')
     # print("in The Login")
-    return render(request,'authentication/login.html')
+    form = RegistrationForm()
+    context = {
+    'form':form,
+    # 'newsletter_form': newsletter_form,
+    }
+    return render(request,'authentication/login-register.html',context)
 
 @login_required(login_url='login')
 def logout(request):
@@ -94,16 +107,51 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    auth=None
-    if request.user.is_authenticated:
-        auth=UserProfile.objects.get(user_id=request.user.id)
-    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    if request.user.is_faculty:
+        auth=None
+        if request.user.is_authenticated:
+            auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
 
-    context={
-    "userprofile":userprofile,
-    'auth':auth,
-    }
-    return render(request,"student/dashboard.html",context)
+        context={
+        "userprofile":userprofile,
+        'auth':auth,
+        }
+        return render(request,"faculty/dashboard.html",context)
+    if request.user.is_student:
+        auth=None
+        if request.user.is_authenticated:
+            auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
+
+        context={
+        "userprofile":userprofile,
+        'auth':auth,
+        }
+        return render(request,"student/dashboard.html",context)
+    if request.user.is_hod:
+        auth=None
+        if request.user.is_authenticated:
+            auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
+
+        context={
+        "userprofile":userprofile,
+        'auth':auth,
+        }
+        return render(request,"hod/dashboard.html",context)
+    if request.user.is_director:
+        auth=None
+        if request.user.is_authenticated:
+            auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
+
+        context={
+        "userprofile":userprofile,
+        'auth':auth,
+        }
+        return render(request,"director/dashboard.html",context)
+
 
 
 @login_required(login_url='login')

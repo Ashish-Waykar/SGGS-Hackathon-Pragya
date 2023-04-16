@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static '/css/style-login.css' %}">
+<style media="screen">
+  /* body{
+    background-color:hsla(0,100%,88%,1);
+
+background-image:
+radial-gradient(at 80% 0%, hsl(31, 100%, 95%) 0px, transparent 50%),
+radial-gradient(at 0% 50%, hsl(60, 100%, 70%) 0px, transparent 50%),
+radial-gradient(at 80% 50%, hsl(60, 100%, 95%) 0px, transparent 50%),
+radial-gradient(at 0% 100%, hsl(120, 100%, 95%) 0px, transparent 50%),
+radial-gradient(at 0% 0%, hsl(216, 100%, 95%) 0px, transparent 50%);
+  } */
+</style>
+{% endblock head %}
+
+{% block body %}
+<!DOCTYPE html>
+
+    <!-- <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> -->
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="{% url 'register' %}"method="post">
+          {% csrf_token %}
+          <h1>Create Account</h1>
+
+          <span> use your email for registration</span>
+          <input type="text"name="first_name" placeholder="First Name" />
+          <input type="text"name="last_name" placeholder="Last Name" />
+          <input type="text"name="phone_number" placeholder="Phone Number" />
+          <input type="date" name="dob" placeholder="Date Of Birth" />
+          <select
+            id="form_need"
+            name="year"
+            class="form-control"
+            required
+            data-error="Please specify your need."
+          >
+          <option value="" selected="">Choose Your Year </option>
+
+          <option value="1st Year">1st Year</option>
+
+          <option value="2nd Year">2nd Year</option>
+
+          <option value="3rd Year">3rd Year</option>
+
+          <option value="4th Year">4th Year</option>
+
+          </select>
+          <input type="email" name="email"placeholder="Email" />
+          <select
+            id="form_need"
+            name="dept"
+            class="form-control"
+            required
+            data-error="Please specify your need."
+          >
+          <option value="" selected="">Choose Your Department </option>
+          <option value="Information Technology">Information Technology</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Mechanical">Mechanical</option>
+          <option value="Chemical">Chemical</option>
+          <option value="Civil">Civil</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Production">Production</option>
+          <option value="Textile">Textile</option>
+          </select>
+
+          <input type="password" name="password"placeholder="Password" />
+          <input type="password"name="confirm_password" placeholder="Confirm-Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        {% if request.GET.command == 'verification' %}
+
+
+      <div id="card"style="height:200px">
+        <div id="card-content">
+          <div id="card-title">
+            <h2>Successfull </h2>
+            <div class="underline-title"></div>
+          </div>
+        <center>  <img class="big-logo"  src="{% static 'img/logo.jpg' %}" style="max-width:100% ;max-width:200px"alt=""></center>
+          <div class="container mx-auto alert alert-info text-center"role='alert' style="max-width: 1024px; margin-top:25px;">
+
+          Thank You for registering with us . we have sent you a verification email to your email address [ {{  request.GET.email  }} ]
+          <br><br>
+
+          Alredy Verified <a href="{% url 'login' %}" class="btn btn-info">Login</a>
+          </div>
+        </div>
+      </div>
+        {% else %}
+        <form action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+
+          <h1>Sign in</h1>
+          <!-- <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div> -->
+          <div class="containter-alert"style="max-height:100px">
+            {% include 'includes/alerts.html'%}
+
+          </div>
+
+          <span> use your account</span>
+          <input type="email"name="email" placeholder="Email" />
+          <input type="password" name="password"placeholder="Password" />
+          <a href="#">Forgot your password?</a>
+          <br>
+          <br>
+          <button type="submit">Sign In</button>
+        </form>
+        {% endif %}
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Created with <i class="fa fa-heart"></i> by
+        <a target="_blank" href="#">Kunal™️</a>
+        -  ©️Copyright 2023
+        <a
+          target="_blank"
+          href="#"
+          >here</a
+        >.
+      </p>
+    </footer>
+
+
+{% endblock body %}
+{% block foot %}
+<script src="{% static 'js/login-js.js' %}" charset="utf-8"></script>
+
+{% endblock foot %}

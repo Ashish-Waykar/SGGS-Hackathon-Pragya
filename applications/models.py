@@ -23,8 +23,9 @@ class application(models.Model):
     ('Documents','Documents'),
     ('Other','Other')
     }
+    application_id=models.CharField(max_length=100,blank=True,null=True)
     status=models.CharField(max_length=1000,choices=status_all,null=True,blank=True)
-    category=models.CharField(max_length=1000,choices=status_all,null=True,blank=True)
+    category=models.CharField(max_length=1000,choices=categories_all,null=True,blank=True)
     title=models.CharField(max_length=500,null=True,blank=True)
     content=models.TextField(max_length=1000,null=True,blank=True)
     reject_reason=models.CharField(max_length=500,null=True,blank=True)
@@ -43,3 +44,5 @@ class application(models.Model):
     # Rejected by
     is_rejected_by_director=models.BooleanField(default=False)
     is_rejected_by_hod=models.BooleanField(default=False)
+    def __str__(self):
+        return self.application_id

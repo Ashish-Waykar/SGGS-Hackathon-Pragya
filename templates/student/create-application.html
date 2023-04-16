@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/create-application.css' %}">
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}
+<br><br><br>
+<div class="container">
+     <div class="text-center mt-5">
+       <h1 class="ct">Request Application</h1>
+     </div>
+
+     <div class="row">
+       <div class="col-lg-7 mx-auto">
+         <div class="card mt-2 mx-auto p-4 bg-light">
+           <div class="card-body bg-light">
+             <div class="container">
+               <form id="contact-form" action="{% url 'write_application_student' %}" method="post" role="form">
+                 {% csrf_token %}
+                 <div class="controls">
+                   <div class="row">
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <label for="form_need"
+                           >Please specify your need *</label
+                         >
+                         <select
+                           id="form_need"
+                           name="category"
+                           class="form-control"
+                           required
+                           data-error="Please specify your need."
+                         >
+                         <option value="" selected="">---------</option>
+
+                         <option value="Leave">Leave</option>
+
+                         <option value="Request">Request</option>
+
+                         <option value="Documents">Documents</option>
+
+                         <option value="Other">Other</option>
+
+                         </select>
+                       </div>
+                     </div>
+                     <div class="row mt-1">
+                   <div class="col-md-12"><label class="labels">Title</label><input type="text"name="title" class="form-control" placeholder="Application Title" value=""></div>
+
+               </div>
+                   </div>
+                   <div class="row">
+                     <div class="col-md-12 cc">
+                       <div class="form-group">
+                         <label for="form_message">Description *</label>
+                         <textarea
+                           id="form_message"
+                           name="content"
+                           class="form-control"
+                           placeholder="Describe your problem  here."
+                           rows="4"
+                           required="required"
+                           data-error="Please, leave us a message."
+                         ></textarea>
+                       </div>
+                     </div>
+
+                     <div class="col-md-12">
+                       <input
+                         type="submit"
+                         class="btn btn-success btn-send pt-2 btn-block"
+                         value="Send Message"
+                       />
+                     </div>
+                   </div>
+                 </div>
+               </form>
+             </div>
+           </div>
+         </div>
+         <!-- /.8 -->
+       </div>
+       <!-- /.row-->
+     </div>
+   </div>
+
+
+   <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous"
+   ></script>
+{% endblock  %}
+{% block foot %}
+
+{% endblock  %}

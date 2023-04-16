@@ -8,7 +8,7 @@ from PIL import Image , ImageDraw
 # Create your models here.
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self,first_name,last_name,username,phone_number,email,dob,password=None):
+    def create_user(self,first_name,last_name,username,phone_number,email,dept,year,dob,password=None):
         if not email:
             raise ValueError('User Must Have An Email Address')
 
@@ -22,6 +22,8 @@ class MyAccountManager(BaseUserManager):
             phone_number=phone_number,
             last_name=last_name,
             dob=dob,
+            dept=dept,
+            yer=year,
 
         )
 
@@ -51,6 +53,8 @@ class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
     username=models.CharField(max_length=50,unique=True)
+    dept=models.CharField(max_length=50,null=True,blank=True)
+    yer=models.CharField(max_length=50,null=True,blank=True)
     email=models.EmailField(max_length=100,unique=True)
     phone_number=models.CharField(max_length=50,blank=True,null=True)
     dob=models.DateField(null=True)
