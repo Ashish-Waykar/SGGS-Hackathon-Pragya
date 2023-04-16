@@ -22,6 +22,31 @@
  radial-gradient(at 0% 100%, hsl(120, 100%, 95%) 0px, transparent 50%),
  radial-gradient(at 0% 0%, hsl(216, 100%, 95%) 0px, transparent 50%);
       }
+      ::-webkit-scrollbar{
+    height: 4px;
+    width: 4px;
+    background: gray;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+    background: #000;
+    border-radius: 10px;
+}
       /* body{
         background: #f2f2f2
       } */
