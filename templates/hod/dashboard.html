@@ -2,6 +2,34 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/hod-dashboard.css' %}">
+<style media="screen">
+
+  .m-40{
+    margin:65px
+  }
+  .card-users{
+    background-color:none;
+    border-left:1px solid white;
+    color:white;
+    decoration:none;
+    cursor:pointer;
+  }
+  a { text-decoration: none; }
+  .card-users:hover{
+
+    border-left:1px solid white;
+    color:white;
+    decoration:none;
+    cursor:pointer;
+  }
+   .card-users h2{
+     margin-top:0px;
+     font-size:23px
+   }
+   .center-content-contents{
+     padding-top:80px
+   }
+</style>
 {% endblock  %}
 {% block body %}
 {% include 'includes/navbar.html'%}
@@ -25,21 +53,62 @@
 
         <div class="managed-contents-one">
           <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-              <i class="fa-solid fa-graduation-cap"></i> 8
+            <div class="col-12">
+            <div class="row">
+              <div class="col-6 card-users"style="">
+
+                <a href="{% url 'hod_list_students' %}"style="color:white;text-align:center">
+
+
+                <h2>{{accs_stu}} Students</h2>
+                <div class="m-40">
+                </div>
+                <center>
+                <div class="">
+
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                </center>
+
+</a>
+
+              </div>
+
+                <div class="col-6 card-users"style="">
+<a href="{% url 'hod_list_faculties' %}"style="color:white;">
+
+  <center>
+
+<div class="">
+
+<i class="fa-solid fa-user-tie"></i>
+</div>
+<div class="m-40">
+</div>
+
+                  <h2 >{{accs_fac}} Faculties</h2>
+                </center>
+
+                </a>
+                </div>
+
 
             </div>
-            <h4>Students</h4>
+            </div>
 
           </div>
         </div>
         <div class="managed-contents-two">
           <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-              <i class="fa-solid fa-user-tie"></i> 8
+
+<a href="{% url 'write_application_student' %}"style="color:white;">
+            <div class="main-managed-contents text-center">
+            <i class="fa-regular fa-pen-to-square"></i>
 
             </div>
-            <h4>Faculties</h4>
+            <h4>Create Application</h4>
+
+        </a>
 
           </div>
         </div>
@@ -47,9 +116,9 @@
       <div class="section-grid">
 
         <div class="managed-contents-three">
-          <div class="managed-contents-contents">
+          <div class="managed-contents-contents text-center">
             <div class="main-managed-contents">
-            <i class="fa-solid fa-note"></i> 13
+            <i class="fa-solid fa-note"></i> {{appln_counts}}
 
             </div>
             <h4>Applications</h4>
@@ -58,16 +127,51 @@
 
         </div>
         <div class="managed-contents-four">
-<a href="{% url 'write_application_student' %}"style="color:white;">
+
           <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-            <i class="fa-regular fa-pen-to-square"></i> 7
+            <div class="col-12">
+            <div class="row">
+              <div class="col-6 card-users"style="">
+
+                <a href="{% url 'hod_list_all_applications_students' %}"style="color:white;text-align:center">
+
+
+                <h2>Student Applications</h2>
+                <div class="m-40">
+                </div>
+                <center>
+                <div class="">
+
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                </center>
+
+</a>
+
+              </div>
+
+                <div class="col-6 card-users"style="">
+<a href="{% url 'hod_list_all_applications_faculty' %}"style="color:white;">
+
+  <center>
+
+<div class="">
+
+<i class="fa-solid fa-user-tie"></i>
+</div>
+<div class="m-40">
+</div>
+
+                  <h2 >Facultie Applications</h2>
+                </center>
+
+                </a>
+                </div>
+
 
             </div>
-            <h4>Create Application</h4>
-
-          </div>
-        </a>
+            </div>
+      </div>
         </div>
       </div>
     </div>

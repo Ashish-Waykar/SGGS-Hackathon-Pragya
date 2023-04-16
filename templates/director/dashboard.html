@@ -2,6 +2,65 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/director-dashboard.css' %}">
+<style media="screen">
+
+.container-2X2 {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 240px 240px ;
+  grid-row: auto auto;
+  justify-content:center;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.container-2X2 .box {
+  border: 1px solid #fff;
+  padding: 20px;
+  border-radius: 5px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-family: sans-serif;
+}
+.card-users{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  height:220px;
+  padding:20px;
+}
+.m-40{
+  margin:40px
+}
+.card-users{
+  background-color:none;
+  border-left:1px solid white;
+  color:white;
+  decoration:none;
+  cursor:pointer;
+}
+a { text-decoration: none; }
+.card-users:hover{
+
+  border-left:1px solid white;
+  color:white;
+  decoration:none;
+  cursor:pointer;
+}
+ .card-users h2{
+   margin-top:0px;
+   font-size:23px
+ }
+ .center-content-contents{
+   padding-top:50px
+ }
+
+</style>
 {% endblock  %}
 {% block body %}
 {% include 'includes/navbar.html'%}
@@ -24,21 +83,58 @@
 
         <div class="managed-contents-one">
           <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-              <i class="fa-solid fa-graduation-cap"></i> 8
+            <div class="col-12">
+            <div class="row">
+              <div class="col-4 card-users"style="">
 
+                <a href="{% url 'list_students' %}"style="color:white;text-align:center">
+
+                <h2>{{accs_stu}} Students</h2>
+                <div class="m-40">
+                </div>
+<i class="fa-solid fa-graduation-cap"></i>
+</a>
+
+              </div>
+
+                <div class="col-4 card-users"style="">
+<a href="{% url 'list_faculties' %}"style="color:white;">
+
+
+
+<i class="fa-solid fa-user-tie"></i>
+<div class="m-40">
+</div>
+
+                  <h2 >{{accs_fac}} Faculties</h2>
+
+                </a>
+                </div>
+
+                  <div class="col-4 card-users"style="">
+
+                    <a href="{% url 'list_hods' %}"style="color:white;">
+
+  <h2>{{accs_hod}} Hod's</h2>
+  <div class="m-40">
+
+  </div>
+  <i class="fa-solid fa-building-user"></i>
+</a>
+
+                  </div>
             </div>
-            <h4>Students</h4>
+            </div>
+
 
           </div>
         </div>
         <div class="managed-contents-two">
           <div class="managed-contents-contents">
             <div class="main-managed-contents">
-              <i class="fa-solid fa-user-tie"></i> 8
-
+<i class="fa-sharp fa-solid fa-newspaper"></i>
             </div>
-            <h4>Faculties</h4>
+            <h4>Add Notice </h4>
 
           </div>
         </div>
@@ -46,25 +142,31 @@
       <div class="section-grid">
 
         <div class="managed-contents-three">
-          <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-            <i class="fa-solid fa-note"></i> 13
+          <div class="managed-contents-contents center-content-contents">
+              <i class="fa-solid fa-plus"></i>
 
-            </div>
+
             <h4>Applications</h4>
 
           </div>
 
         </div>
         <div class="managed-contents-four">
-          <div class="managed-contents-contents">
-            <div class="main-managed-contents">
+          <a href="{% url 'list_all_applications' %}">
+          <div class="managed-contents-contents"style="padding:10px">
+            <div class="container-2X2">
+  <div class="box">4 <h5>&nbsp; Approoved &nbsp&nbspApplications</h5></div>
+  <div class="box">4 <h5>&nbsp; Pending &nbsp&nbspApplications</h5></div>
+  <div class="box">6 <h5>&nbsp; Accepted &nbsp&nbspApplications</h5></div>
+  <div class="box">2 <h5>&nbsp; Rejected &nbsp&nbspApplications</h5></div>
+</div>
+            <!-- <div class="main-managed-contents">
             <i class="fa-solid fa-xmark-to-slot"></i> 7
 
             </div>
-            <h4>Applications Rejected</h4>
+            <h4>Applications Rejected</h4> -->
 
-          </div>
+          </div></a>
         </div>
       </div>
     </div>
@@ -112,148 +214,79 @@
 
             </div>
             <br><br>
-  <div class="head-two">
-    <div class="title-label">
+            <div class="col-12">
+
+  <div class=" row">
+    <div class=" col-6">
     <h2>  Student Approovals</h2>
 
-    <div class="left-side-pane">
+    <div class="left-side-pane ">
 
-      <div class="card-pane">
-        <div class="title-card-pane">
+      {% if appln_stu %}
+      {% for d in appln_stu %}
+            <div class="card-pane">
+              <h6 class="float-right">Application ID :<b> {{d.application_id}}</b></h6>
+
+              <div class="title-card-pane">
 
 
 
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {{d.title}}
 
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-info'style="height:40px;">status</a>
+              </div>
+              <div class="content-card-pane">
+                {{d.content}}
 
-        </div>
-      </div><br>
 
-      <div class="card-pane">
-        <div class="title-card-pane">
+              </div><br>
+              <div class="bottom-card-pane">
+                <a href="{% url 'director_application_details' d.application_id %}"class='btn btn-info'style="height:40px">view details</a>
+                <a href=""class='alert alert-warning'style="height:40px;">{{d.status}}</a>
 
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div><br>
+      {% endfor %}
 
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-warning'style="height:40px;">status</a>
+                
+      {% else %}
+      <h1>No Applicaiton Is Available</h1>
+      {% endif %}
 
-        </div>
-      </div><br>
-      <div class="card-pane">
-        <div class="title-card-pane">
-
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-danger'style="height:40px;">status</a>
-
-        </div>
-      </div>
-      <br>
-      <div class="card-pane">
-        <div class="title-card-pane">
-
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-success'style="height:40px;">status</a>
-
-        </div>
-      </div>
     </div>
   </div>
-    <div class="title-label">
+
+    <div class="col-6">
     <h2>  Faculty Approovals</h2>
-    <div class="right-side-pane">
+    <div class="right-side-pane ">
 
 
-      <div class="card-pane">
-        <div class="title-card-pane">
+{% if appln_fac %}
+            {% for d in appln_fac %}
 
+            <div class="card-pane">
+              <h6 class="float-right">Application ID :<b> {{d.application_id}}</b></h6>
+              <div class="title-card-pane">
+                {{d.title}}
 
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+              <div class="content-card-pane">
+                {{d.content}}
 
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-info'style="height:40px;">status</a>
+              </div><br>
+              <div class="bottom-card-pane">
+                <a href="{% url 'director_application_details' d.application_id %}"class='btn btn-info'style="height:40px">view details</a>
+                <a href=""class='alert alert-info'style="height:40px;">{{d.status}}</a>
+              </div>
+            </div><br>
 
-        </div>
-      </div><br>
-
-      <div class="card-pane">
-        <div class="title-card-pane">
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-warning'style="height:40px;">status</a>
-
-        </div>
-      </div><br>
-      <div class="card-pane">
-        <div class="title-card-pane">
-
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-success'style="height:40px;">status</a>
-
-        </div>
-      </div><br>
-      <div class="card-pane">
-        <div class="title-card-pane">
-
-          Need Approoval
-        </div>
-        <div class="content-card-pane">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-        </div><br>
-        <div class="bottom-card-pane">
-          <a href=""class='btn btn-info'style="height:40px">view details</a>
-          <a href=""class='alert alert-danger'style="height:40px;">status</a>
-
-        </div>
-      </div>
-
-
+            {% endfor %}
+{% else %}
+<h1>No Applicaiton Is Available</h1>
+{% endif %}
     </div>
   </div>
   </div>
+</div>
   <br><br><br>
   <section class="col-12"style="background-color:white;padding:20px">
     <div class="row">

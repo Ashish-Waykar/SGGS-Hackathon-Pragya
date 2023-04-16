@@ -9,7 +9,7 @@
 
      <div class="container">
        <div class="card-main">
-         <h5>To , <b>HOD {{request.user.dept}}</b></h5>
+         <h5>To , <b>Director {{request.user.dept}}</b></h5>
          <h5>From , <b> {{appln.publisher_user.full_name}}</b></h5>
          <h5>Date : <b>{{appln.datetime|date}}</b></h5>
          <h5>Letter Category : <b>{{appln.category}}</b></h5>
@@ -18,8 +18,8 @@
          <br>
          <h5>{{appln.content}}</h5>
 <br><br><br>
-         <a href="{% url 'hod_approove_application' appln.application_id %}" class='btn btn-success'>Approove</a>
-         <a href="{% url 'hod_reject_application' appln.application_id %}" class='btn btn-danger'>Reject</a>
+         <a href="{% url 'director_approove_application' appln.application_id %}" class='btn btn-success'>Approove</a>
+         <a href="{% url 'director_reject_application' appln.application_id %}" class='btn btn-danger'>Reject</a>
          <span class="float-right">
          Status : <a href=""class="alert alert-warning">{{appln.status}}</a></span><br>
          <h6 class="float-right">Application ID :<b> {{appln.application_id}}</b></h6>

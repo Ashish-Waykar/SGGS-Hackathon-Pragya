@@ -140,13 +140,20 @@ def dashboard(request):
         if request.user.is_authenticated:
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
+        dept=department.objects.get(department_name=auth.user.dept)
         appln_stu=application.objects.filter(status='Submited',is_published_by_student=True).order_by('-datetime')
         appln_fac=application.objects.filter(status='Submited',is_published_by_faculty=True).order_by('-datetime')
+        accs_fac=Account.objects.filter(is_faculty=True,dept=request.user.dept,is_active=True).count()
+        accs_stu=Account.objects.filter(is_student=True,dept=request.user.dept,is_active=True).count()
+        appln_counts=application.objects.all().count()
         context={
         "userprofile":userprofile,
         'auth':auth,
+        "appln_counts":appln_counts,
         "appln_stu":appln_stu,
         "appln_fac":appln_fac,
+        "accs_stu":accs_stu,
+        "accs_fac":accs_fac,
         }
         return render(request,"hod/dashboard.html",context)
     if request.user.is_director:
@@ -154,12 +161,24 @@ def dashboard(request):
         if request.user.is_authenticated:
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
+        accs_fac=Account.objects.filter(is_faculty=True,is_active=True).count()
+        accs_stu=Account.objects.filter(is_student=True,is_active=True).count()
+        accs_hod=Account.objects.filter(is_hod=True,is_active=True).count()
 
+        appln_stu=application.objects.filter(status='Accepted Level 1',is_published_by_student=True).order_by('-datetime')
+        appln_fac=application.objects.filter(status='Accepted Level 1',is_published_by_faculty=True).order_by('-datetime')
         context={
         "userprofile":userprofile,
         'auth':auth,
+        'accs_fac':accs_fac,
+        'accs_stu':accs_stu,
+        'accs_hod':accs_hod,
+        'appln_stu':appln_stu,
+        'appln_fac':appln_fac,
         }
         return render(request,"director/dashboard.html",context)
+
+
 
 
 
@@ -224,3 +243,231 @@ def hod_faculty_application_details(request,application_no):
     'appln':appln,
     }
     return render(request,"hod/view-application-faculty.html",context)
+
+
+
+def list_faculties(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    accs=Account.objects.filter(is_faculty=True,is_active=True)
+
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'accs':accs,
+    }
+    return render(request,"director/list-faculties.html",context)
+
+def list_students(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    acc_verified=Account.objects.filter(is_student=True,is_active=True)
+    acc_nonverified=Account.objects.filter(is_student=True,is_active=False)
+
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'acc_verified':acc_verified,
+'acc_nonverified':acc_nonverified,
+    }
+    return render(request,"director/list-students.html",context)
+
+def list_hods(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    accs=Account.objects.filter(is_hod=True,is_active=True)
+
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'accs':accs,
+    }
+    return render(request,"director/list-hods.html",context)
+def list_all_applications(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    accs=Account.objects.filter(is_hod=True,is_active=True)
+
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'accs':accs,
+    }
+    return render(request,'director/applications/list-all-aplications.html',context)
+
+
+def director_application_details(request,application_no):
+
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    appln=application.objects.get(application_id=application_no)
+    print(appln)
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'appln':appln,
+    }
+    return render(request,'director/view-application.html',context)
+
+
+def hod_approove_application(request,application_no):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
+        appln=application.objects.get(application_id=application_no)
+        appln.status="Accepted Level 1"
+        appln.save()
+        messages.success(request,'Aplication Has Been Approoved At Departmental Level...')
+        # 'Approoved'
+        print(appln)
+    return redirect('dashboard')
+
+def hod_reject_application(request,application_no):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
+        if request.method == 'POST':
+            appln=application.objects.get(application_id=application_no)
+            appln.status="Rejected"
+            appln.reject_reason=request.POST.get("reject_reason")
+            appln.is_rejected_by_hod=True
+            appln.save()
+            messages.success(request,'Aplication Has Been Rejected At Departmental Level...')
+            # 'Approoved'
+            return redirect('dashboard')
+        else:
+            appln=application.objects.get(application_id=application_no)
+            context={
+            "userprofile":userprofile,
+            'auth':auth,
+            'appln':appln,
+            }
+            return render(request,'hod/reject-application.html',context)
+
+
+
+def director_approove_application(request,application_no):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+
+        appln=application.objects.get(application_id=application_no)
+        appln.status="Approoved"
+        appln.save()
+        messages.success(request,'Aplication Has Been Approoved At College Level...')
+            # 'Approoved'
+        return redirect('dashboard')
+
+def director_reject_application(request,application_no):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+        userprofile=UserProfile.objects.get(user_id=request.user.id)
+        if request.method == 'POST':
+            appln=application.objects.get(application_id=application_no)
+            appln.status="Rejected"
+            appln.reject_reason=request.POST.get("reject_reason")
+            appln.is_rejected_by_director=True
+            appln.save()
+            messages.success(request,'Aplication Has Been Rejected At College Level...')
+            # 'Approoved'
+            return redirect('dashboard')
+
+        else:
+            appln=application.objects.get(application_id=application_no)
+            context={
+            "userprofile":userprofile,
+            'auth':auth,
+            'appln':appln,
+            }
+            return render(request,'director/reject-application.html',context)
+
+
+def hod_list_all_applications_faculty(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    # accs=Account.objects.filter(is_hod=True,is_active=True)
+    dept=department.objects.get(department_name=auth.user.dept)
+    appln_acc=application.objects.filter(department=dept,is_published_by_faculty=True).exclude(status="Rejected").order_by('-datetime')
+    appln_rej=application.objects.filter(department=dept,is_published_by_faculty=True,status="Rejected").order_by('-datetime')
+    print(appln_acc)
+    print(appln_rej)
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    # 'accs':accs,
+    "appln_rej":appln_acc,
+    "appln_acc":appln_rej,
+
+    }
+    return render(request,'hod/view-all-applications-faculty.html',context)
+def hod_list_all_applications_students(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    # accs=Account.objects.filter(is_hod=True,is_active=True)
+    # print(auth.user.dept)
+    dept=department.objects.get(department_name=auth.user.dept)
+    appln_acc=application.objects.filter(department=dept,is_published_by_student=True).exclude(status="Rejected").order_by('-datetime')
+    appln_rej=application.objects.filter(department=dept,is_published_by_student=True,status="Rejected").order_by('-datetime')
+    print(appln_acc)
+    print(appln_rej)
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    # 'accs':accs,
+
+        "appln_rej":appln_acc,
+        "appln_acc":appln_rej,
+    }
+    return render(request,'hod/view-all-applications-students.html',context)
+
+
+
+
+def hod_list_faculties(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    acc_verified=Account.objects.filter(is_faculty=True,dept=request.user.dept,is_active=True)
+    acc_nonverified=Account.objects.filter(is_faculty=True,dept=request.user.dept,is_active=False)
+
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+
+    'acc_verified':acc_verified,
+    'acc_nonverified':acc_nonverified,
+    }
+    return render(request,"hod/list-faculties.html",context)
+
+def hod_list_students(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    acc_verified=Account.objects.filter(is_student=True,dept=request.user.dept,is_active=True)
+    acc_nonverified=Account.objects.filter(is_student=True,dept=request.user.dept,is_active=False)
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    'acc_verified':acc_verified,
+    'acc_nonverified':acc_nonverified,
+    }
+    return render(request,"hod/list-students.html",context)

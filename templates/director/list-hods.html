@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/list-style.css' %}">
+<style media="screen">
+  .cotainer{
+    max-width:1000px;
+    background:white;
+    margin:auto;
+    top:100px;
+  }
+</style>
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}
+
+<div class="cotainer">
+
+<div class="task-manager">
+      <div class="page-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="header upcoming">Recent Applications</div>
+
+
+            <div class="tasks-wrapper" style="overflow-y: scroll; height: 600px">
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Web Application Design</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Interactive Design</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Web Application Design</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Interactive Design</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Web Application Design</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Interactive Design</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Web Application Design</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Interactive Design</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <span class="tag review">In Review</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <span class="tag progress">In Progress</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Web Application Design</span>
+                <span class="tag approved">Approved</span>
+              </div>
+              <div class="task">
+                <span class="label-text">Interactive Design</span>
+                <span class="tag review">In Review</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="header upcoming">Applications to be reviewed</div>
+
+            <div class="tasks-wrapper" style="overflow-y: scroll; height:600px">
+
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Dashboard Design Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a userflow</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Application Implementation</span>
+                <button class="approve-btn">View more</button>
+              </div>
+              <div class="task">
+                <span class="label-text">Create a Dashboard Design</span>
+                <button class="approve-btn">View more</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock  %}
+{% block foot %}
+
+{% endblock  %}

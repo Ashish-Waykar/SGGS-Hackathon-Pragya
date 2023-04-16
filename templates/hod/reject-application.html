@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/view-faculty-application.css' %}">
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}
+<br><br><br>
+
+     <div class="container">
+       <div class="card-main">
+         <h5>To , <b>HOD {{request.user.dept}}</b></h5>
+         <h5>From , <b>HOD {{request.user.full_name}}</b></h5>
+         <br>
+         <h5>Title , <b>{{appln.title}}</b></h5>
+         <br>
+         <h5>{{appln.content}}</h5>
+         <form class="" action="{% url 'hod_reject_application' appln.application_id %}" method="POST">
+           {% csrf_token %}
+           <label class="alert alert-danger">Please Insert The Reason For Rejection Of These Application. </label>
+           <textarea name="reject_reason" rows="9"required cols="135"style="padding:20px;border-radius:5px"></textarea>
+           <a href=""class='btn btn-outline-success'>Cancel</a>
+           <button type="submit"class='btn btn-outline-danger'>Reject</button>
+         </form>
+<br><br><br>
+       </div>
+     </div>
+{% endblock  %}
+{% block foot %}
+
+{% endblock  %}
