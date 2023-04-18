@@ -32,6 +32,15 @@ urlpatterns = [
     path('hod-list-students/', views.hod_list_students,name='hod_list_students'),
 
 
+    path('notice-01-page/', views.year_notice_01_page,name='year_notice_01_page'),
+    path('year-notice-02-page/', views.year_notice_02_page,name='year_notice_02_page'),
+    path('year-notice-03-page/<str:detpt>/', views.year_notice_03_page,name='year_notice_03_page'),
+    path('year-notice-04-page/<str:detpt>/<str:yr>/', views.year_notice_04_page,name='year_notice_04_page'),
+
+
+
+
+
 
 
 

@@ -2,6 +2,64 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/student-dashboard.css' %}">
+<style media="screen">
+
+  .container-2X2 {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 240px 240px ;
+    grid-row: auto auto;
+    justify-content:center;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+  .container-2X2 .box {
+    border: 1px solid #fff;
+    padding: 20px;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: sans-serif;
+  }
+  .card-users{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:220px;
+    padding:20px;
+  }
+  .m-40{
+    margin:40px
+  }
+  .card-users{
+    background-color:none;
+    border-left:1px solid white;
+    color:white;
+    decoration:none;
+    cursor:pointer;
+  }
+  a { text-decoration: none; }
+  .card-users:hover{
+
+    border-left:1px solid white;
+    color:white;
+    decoration:none;
+    cursor:pointer;
+  }
+   .card-users h2{
+     margin-top:0px;
+     font-size:23px
+   }
+   .center-content-contents{
+     padding-top:50px
+   }
+</style>
 {% endblock  %}
 {% block body %}
 {% include 'includes/navbar.html'%}
@@ -25,21 +83,32 @@
 
         <div class="managed-contents-one">
           <div class="managed-contents-contents">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6">
+
+                </div>
+                <div class="col-6">
+
+                </div>
+              </div>
+            </div>
             <div class="main-managed-contents">
-              <i class="fa-solid fa-graduation-cap"></i> 8
+        <i class="fa fa-book" aria-hidden="true"></i> 6
 
             </div>
-            <h4>Students</h4>
+            <h4>Subjects</h4>
 
           </div>
         </div>
         <div class="managed-contents-two">
-          <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-              <i class="fa-solid fa-user-tie"></i> 8
-
-            </div>
-            <h4>Faculties</h4>
+          <div class="managed-contents-contents"style="padding:0px">
+            <div class="container-2X2">
+  <div class="box">{{appln_approoved}} <h5>&nbsp; Approoved &nbsp&nbspApplications</h5></div>
+  <div class="box">{{appln_Submited}}<h5>&nbsp; Pending &nbsp&nbspApplications</h5></div>
+  <div class="box">{{appln_hod}}  <h5>&nbsp; Accepted &nbsp&nbspApplications</h5></div>
+  <div class="box">{{appln_Rejected}} <h5>&nbsp; Rejected &nbsp&nbspApplications</h5></div>
+</div>
 
           </div>
         </div>
@@ -49,7 +118,7 @@
         <div class="managed-contents-three">
           <div class="managed-contents-contents">
             <div class="main-managed-contents">
-            <i class="fa-solid fa-note"></i> 13
+            <i class="fa-regular fa-pen-to-square"></i>  {{appln_count}}
 
             </div>
             <h4>Applications</h4>
@@ -58,10 +127,11 @@
 
         </div>
         <div class="managed-contents-four">
-<a href="{% url 'write_application_student' %}"style="color:white;">
+<a href="{% url 'write_application_faculty' %}"style="color:white">
           <div class="managed-contents-contents">
             <div class="main-managed-contents">
-            <i class="fa-regular fa-pen-to-square"></i> 7
+
+            <i class="fa-solid fa-plus"></i>
 
             </div>
             <h4>Create Application</h4>
@@ -243,71 +313,29 @@
               <h2> Recent Notices</h2>
 
               <div class="left-side-pane">
-
+                {% if notices_yr %}
+                {% for d in notices_yr %}
                 <div class="card-pane">
                   <div class="title-card-pane">
 
 
 
-                    Need Approoval
+                    {{d.title}}
                   </div>
                   <div class="content-card-pane">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    {{d.content}}
 
                   </div><br>
                   <div class="bottom-card-pane">
-                    <a href=""class='btn btn-info'style="height:40px">view details</a>
-                    <a href=""class='alert alert-info'style="height:40px;">status</a>
+                    <!-- <a href=""class='btn btn-info'style="height:40px">view details</a> -->
+                    <a class='alert alert-info'style="height:40px;text-decoration:none;cursor:pointer">By : {{d.from_head_user_by}}</a>
 
                   </div>
                 </div><br>
-
-                <div class="card-pane">
-                  <div class="title-card-pane">
-
-                    Need Approoval
-                  </div>
-                  <div class="content-card-pane">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                  </div><br>
-                  <div class="bottom-card-pane">
-                    <a href=""class='btn btn-info'style="height:40px">view details</a>
-                    <a href=""class='alert alert-warning'style="height:40px;">status</a>
-
-                  </div>
-                </div><br>
-                <div class="card-pane">
-                  <div class="title-card-pane">
-
-                    Need Approoval
-                  </div>
-                  <div class="content-card-pane">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                  </div><br>
-                  <div class="bottom-card-pane">
-                    <a href=""class='btn btn-info'style="height:40px">view details</a>
-                    <a href=""class='alert alert-danger'style="height:40px;">status</a>
-
-                  </div>
-                </div>
-                <br>
-                <div class="card-pane">
-                  <div class="title-card-pane">
-
-                    Need Approoval
-                  </div>
-                  <div class="content-card-pane">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                  </div><br>
-                  <div class="bottom-card-pane">
-                    <a href=""class='btn btn-info'style="height:40px">view details</a>
-                    <a href=""class='alert alert-success'style="height:40px;">status</a>
-
-                  </div>
-                </div>
+                {% endfor %}
+                {% else %}
+                <h1>No Notice Is Available</h1>
+                {% endif %}
               </div>
 
             </div>

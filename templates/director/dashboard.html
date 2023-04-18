@@ -130,12 +130,14 @@ a { text-decoration: none; }
           </div>
         </div>
         <div class="managed-contents-two">
+
           <div class="managed-contents-contents">
+            <a href="{% url 'year_notice_01_page' %}" style="color:white;">
             <div class="main-managed-contents">
 <i class="fa-sharp fa-solid fa-newspaper"></i>
             </div>
             <h4>Add Notice </h4>
-
+</a>
           </div>
         </div>
       </div>
@@ -222,6 +224,37 @@ a { text-decoration: none; }
 
     <div class="left-side-pane ">
 
+      {% if appln_fac %}
+                  {% for d in appln_fac %}
+
+                  <div class="card-pane">
+                    <h6 class="float-right">Application ID :<b> {{d.application_id}}</b></h6>
+                    <div class="title-card-pane">
+                      {{d.title}}
+
+                    </div>
+                    <div class="content-card-pane">
+                      {{d.content}}
+
+                    </div><br>
+                    <div class="bottom-card-pane">
+                      <a href="{% url 'director_application_details' d.application_id %}"class='btn btn-info'style="height:40px">view details</a>
+                      <a href=""class='alert alert-info'style="height:40px;">{{d.status}}</a>
+                    </div>
+                  </div><br>
+
+                  {% endfor %}
+      {% else %}
+      <h1>No Applicaiton Is Available</h1>
+      {% endif %}
+
+    </div>
+  </div>
+
+    <div class="col-6">
+    <h2>  Faculty Approovals</h2>
+    <div class="right-side-pane ">
+
       {% if appln_stu %}
       {% for d in appln_stu %}
             <div class="card-pane">
@@ -247,42 +280,11 @@ a { text-decoration: none; }
             </div><br>
       {% endfor %}
 
-                
+
       {% else %}
       <h1>No Applicaiton Is Available</h1>
       {% endif %}
 
-    </div>
-  </div>
-
-    <div class="col-6">
-    <h2>  Faculty Approovals</h2>
-    <div class="right-side-pane ">
-
-
-{% if appln_fac %}
-            {% for d in appln_fac %}
-
-            <div class="card-pane">
-              <h6 class="float-right">Application ID :<b> {{d.application_id}}</b></h6>
-              <div class="title-card-pane">
-                {{d.title}}
-
-              </div>
-              <div class="content-card-pane">
-                {{d.content}}
-
-              </div><br>
-              <div class="bottom-card-pane">
-                <a href="{% url 'director_application_details' d.application_id %}"class='btn btn-info'style="height:40px">view details</a>
-                <a href=""class='alert alert-info'style="height:40px;">{{d.status}}</a>
-              </div>
-            </div><br>
-
-            {% endfor %}
-{% else %}
-<h1>No Applicaiton Is Available</h1>
-{% endif %}
     </div>
   </div>
   </div>

@@ -1,0 +1,121 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/notice-pages.css' %}">
+
+<style>
+
+    .row{
+        margin-bottom: 1vw;
+    }
+    h1{
+        text-align: center;
+    }
+    .card{
+      background-image: linear-gradient(to top, #eff1f2 0%, #d0dbe0 100%);
+      border-radius: 12px;
+      border: none;
+    }
+    .card:hover{
+      background-image: linear-gradient(to top, #eff1f2 0%, #e0e6e8 100%);
+    }
+    .title{
+        text-align: center;
+        margin: auto;
+        margin-bottom: 2vw;
+    }
+    .title{
+  --s: 0.1em;   /* the thickness of the line */
+  --c: #2c4bff; /* the color */
+
+  color: #0000;
+  padding-bottom: var(--s);
+  background:
+    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
+}
+.title:hover {--_p: 100%}
+
+
+.title{
+  font-family: system-ui, sans-serif;
+  font-size: 4rem;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+}
+
+h3{
+  /* text-align: center; */
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+  </style>
+
+
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}<!doctype html>
+<br><br><br>
+   <div class="container">
+    <h5 class="title">Select Year</h5>
+      <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <a href="{% url 'year_notice_04_page' d yr_1 %}">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">First Year</h1>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <a href="{% url 'year_notice_04_page' d yr_2 %}">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">Second Year</h1>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <a href="{% url 'year_notice_04_page' d yr_3 %}">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title">Third Year</h1>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <a href="{% url 'year_notice_04_page' d yr_4 %}">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title">Fourth Year</h1>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+   </div>
+
+  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+{% endblock  %}

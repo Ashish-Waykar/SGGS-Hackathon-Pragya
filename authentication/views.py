@@ -6,7 +6,85 @@ from .models import *
 from .forms import *
 from hod.models import *
 from student.models import *
+from notices.models import *
 # Create your views here.
+def year_notice_01_page(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    }
+    return render(request,"director/notice/notice-page1.html",context)
+def year_notice_02_page(request):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    departments= department.objects.all()
+
+    context={
+    "departments":departments,
+    "userprofile":userprofile,
+    'auth':auth,
+    }
+    return render(request,"director/notice/notice-page2.html",context)
+def year_notice_03_page(request,detpt):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    departments= detpt
+
+    yr_1="1st Year"
+    yr_2="2nd Year"
+    yr_3="3rd Year"
+    yr_4="4th Year"
+    context={
+    "userprofile":userprofile,
+    'auth':auth,
+    "d":departments,
+    "yr_1":yr_1,
+    "yr_2":yr_2,
+    "yr_3":yr_3,
+    "yr_4":yr_4,
+    }
+    return render(request,"director/notice/notice-page3.html",context)
+def year_notice_04_page(request,detpt,yr):
+    auth=None
+    if request.user.is_authenticated:
+        auth=UserProfile.objects.get(user_id=request.user.id)
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    if request.method == 'POST':
+        tit = request.POST.get('title')
+        cont = request.POST.get('content')
+        # content = request.POST.get('content')
+        dept=department.objects.get(department_name=detpt)
+
+        notice=Notice()
+        notice.from_head_user_by="Director"
+        notice.for_director_to="For Year(Director)"
+        notice.publish_to_yr=yr
+        notice.title=tit
+        notice.content=cont
+        notice.department=dept
+        notice.is_by_director=True
+        notice.is_for_all_students=True
+        notice.save()
+        messages.success(request,'Notice Has Been Successfully Posted for Year',yr)
+        return redirect('dashboard')
+    dept=detpt
+    yrr=yr
+    context={
+    "detpt":dept,
+    "yr":yrr,
+    "userprofile":userprofile,
+    'auth':auth,
+    }
+    return render(request,"director/notice/notice-page5.html",context)
 
 def register(request):
     if request.user.is_authenticated:
@@ -113,26 +191,51 @@ def dashboard(request):
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
         appln=application.objects.filter(publisher_user=request.user).order_by('-datetime')
+        appln_approoved=application.objects.filter(publisher_user=request.user,status="Approoved").count()
+        appln_hod=application.objects.filter(publisher_user=request.user,status="Accepted Level 1").count()
+        appln_Submited=application.objects.filter(publisher_user=request.user,status="Submited").count()
+        appln_Rejected=application.objects.filter(publisher_user=request.user,status="Rejected").count()
+        appln_count=application.objects.filter(publisher_user=request.user).count()
+
 
         context={
         "userprofile":userprofile,
         "appln":appln,
-
         'auth':auth,
+        "appln_approoved":appln_approoved,
+        "appln_hod":appln_hod,
+        "appln_Submited":appln_Submited,
+        "appln_Rejected":appln_Rejected,
+        "appln_count":appln_count
         }
         return render(request,"faculty/dashboard.html",context)
     if request.user.is_student:
         auth=None
+        notices_yr=None
         if request.user.is_authenticated:
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
 
         appln=application.objects.filter(publisher_user=request.user).order_by('-datetime')
+        appln_approoved=application.objects.filter(publisher_user=request.user,status="Approoved").count()
+        appln_hod=application.objects.filter(publisher_user=request.user,status="Accepted Level 1").count()
+        appln_Submited=application.objects.filter(publisher_user=request.user,status="Submited").count()
+        appln_Rejected=application.objects.filter(publisher_user=request.user,status="Rejected").count()
+        appln_count=application.objects.filter(publisher_user=request.user).count()
+
+        if auth.user.yer :
+            notices_yr= Notice.objects.filter(publish_to_yr=auth.user.yer,is_for_all_students=True).order_by("-datetime")
 
         context={
         "userprofile":userprofile,
         "appln":appln,
+        "notices_yr":notices_yr,
         'auth':auth,
+        "appln_approoved":appln_approoved,
+        "appln_hod":appln_hod,
+        "appln_Submited":appln_Submited,
+        "appln_Rejected":appln_Rejected,
+        "appln_count":appln_count
         }
         return render(request,"student/dashboard.html",context)
     if request.user.is_hod:
@@ -141,8 +244,8 @@ def dashboard(request):
             auth=UserProfile.objects.get(user_id=request.user.id)
         userprofile=UserProfile.objects.get(user_id=request.user.id)
         dept=department.objects.get(department_name=auth.user.dept)
-        appln_stu=application.objects.filter(status='Submited',is_published_by_student=True).order_by('-datetime')
-        appln_fac=application.objects.filter(status='Submited',is_published_by_faculty=True).order_by('-datetime')
+        appln_stu=application.objects.filter(status='Submited',department=dept,is_published_by_student=True).order_by('-datetime')
+        appln_fac=application.objects.filter(status='Submited',department=dept,is_published_by_faculty=True).order_by('-datetime')
         accs_fac=Account.objects.filter(is_faculty=True,dept=request.user.dept,is_active=True).count()
         accs_stu=Account.objects.filter(is_student=True,dept=request.user.dept,is_active=True).count()
         appln_counts=application.objects.all().count()
@@ -294,12 +397,22 @@ def list_all_applications(request):
     if request.user.is_authenticated:
         auth=UserProfile.objects.get(user_id=request.user.id)
     userprofile=UserProfile.objects.get(user_id=request.user.id)
-    accs=Account.objects.filter(is_hod=True,is_active=True)
+    applications_sub=application.objects.filter(status="Submited")
+    applications_acc=application.objects.filter(status="Accepted Level 1")
+    applications_app=application.objects.filter(status="Approoved")
+    applications_rej=application.objects.filter(status="Rejected")
+
+
+
 
     context={
     "userprofile":userprofile,
     'auth':auth,
-    'accs':accs,
+    # 'accs':accs,
+    "applications_sub":applications_sub,
+    "applications_acc":applications_acc,
+    "applications_app":applications_app,
+    "applications_rej":applications_rej,
     }
     return render(request,'director/applications/list-all-aplications.html',context)
 

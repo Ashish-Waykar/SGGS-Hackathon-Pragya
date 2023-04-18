@@ -19,12 +19,12 @@
 <div class="task-manager">
       <div class="page-content">
         <div class="row">
-          <div class="col-md-6">
-            <div class="header upcoming">Recent Applications</div>
+          <div class="col-md-12">
+            <div class="header upcoming">All Faculties</div>
 
 
             <div class="tasks-wrapper" style="overflow-y: scroll; height: 600px">
-              {% for d in acc_verified %}<div class="task">
+              {% for d in accs %}<div class="task">
                 <span class="label-text">{{d.username}}</span>
                 <span class="tag progress">{{d.dept}}</span>
               </div>
@@ -33,18 +33,7 @@
                         </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="header upcoming">All Students ( Non Verified )</div>
 
-            <div class="tasks-wrapper" style="overflow-y: scroll; height:600px">
-              {% for d in acc_nonverified %}
-              <div class="task">
-                <span class="label-text">{{d.username}}</span>
-                <span class="tag progress">{{d.dept}}</span>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
         </div>
       </div>
     </div>

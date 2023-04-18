@@ -18,14 +18,14 @@ from django.urls import path,include
 
 from django.conf import settings
 from django.conf.urls.static import static
-
+from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('authentication/', include('authentication.urls')),
     path('hod/', include('hod.urls')),
     path('faculty/', include('faculty.urls')),
     path('student/', include('student.urls')),
-    # path('departments/', include('departments.urls')),
+    path('',views.index,name="home"),
     path('notices/', include('notices.urls')),
     path('applications/', include('applications.urls')),
     # path('faculty/', include('authentication.urls')),

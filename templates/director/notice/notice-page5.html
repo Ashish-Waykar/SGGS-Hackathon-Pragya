@@ -1,0 +1,85 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/notice-pages.css' %}">
+
+<style>
+
+    .row{
+        margin-bottom: 1vw;
+    }
+    h1{
+        text-align: center;
+    }
+    .card{
+      background-image: linear-gradient(to top, #eff1f2 0%, #d0dbe0 100%);
+      border-radius: 12px;
+      border: none;
+    }
+    .card:hover{
+      background-image: linear-gradient(to top, #eff1f2 0%, #e0e6e8 100%);
+    }
+    .title{
+        text-align: center;
+        margin: auto;
+        margin-bottom: 2vw;
+    }
+    .title{
+  --s: 0.1em;   /* the thickness of the line */
+  --c: #2c4bff; /* the color */
+
+  color: #0000;
+  padding-bottom: var(--s);
+  background:
+    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
+}
+.title:hover {--_p: 100%}
+
+
+.title{
+  font-family: system-ui, sans-serif;
+  font-size: 4rem;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+}
+
+h3{
+  /* text-align: center; */
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+  </style>
+
+
+{% endblock  %}
+{% block body %}
+{% include 'includes/navbar.html'%}<!doctype html>
+<br><br><br>
+    <div class="container">
+    <h5 class="title">Make A Noties</h5>
+
+<form action="{% url 'year_notice_04_page' detpt yr %}"method="POST">
+{% csrf_token %}
+          <label for="fname"><b>Enter Title</b></label>
+          <input type="text" id="fname" required name="title" placeholder="Enter the title">
+
+
+          <label for="subject"><b>Enter Discription</b></label>
+          <textarea id="subject" name="content" required placeholder="Enter the notice Discription" style="height:150px"></textarea>
+
+          <!-- <label ><b>Upload File</b></label><br>
+          <input type="file" value="Upload"> -->
+
+          <input type="submit" value="Send Notice">
+
+        </form>
+      </div>
+
+{% endblock  %}

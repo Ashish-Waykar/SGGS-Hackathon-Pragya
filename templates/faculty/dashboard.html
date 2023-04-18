@@ -2,7 +2,64 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/faculty-dashboard.css' %}">
+<style media="screen">
 
+  .container-2X2 {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 240px 240px ;
+    grid-row: auto auto;
+    justify-content:center;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+  .container-2X2 .box {
+    border: 1px solid #fff;
+    padding: 20px;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: sans-serif;
+  }
+  .card-users{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:220px;
+    padding:20px;
+  }
+  .m-40{
+    margin:40px
+  }
+  .card-users{
+    background-color:none;
+    border-left:1px solid white;
+    color:white;
+    decoration:none;
+    cursor:pointer;
+  }
+  a { text-decoration: none; }
+  .card-users:hover{
+
+    border-left:1px solid white;
+    color:white;
+    decoration:none;
+    cursor:pointer;
+  }
+   .card-users h2{
+     margin-top:0px;
+     font-size:23px
+   }
+   .center-content-contents{
+     padding-top:50px
+   }
+</style>
 {% endblock  %}
 {% block body %}
 {% include 'includes/navbar.html'%}
@@ -36,21 +93,22 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="main-managed-contents">
-              <i class="fa-solid fa-graduation-cap"></i> 8
+            <div class="main-managed-contents">
+        <i class="fa fa-book" aria-hidden="true"></i> 8
 
             </div>
-            <h4>Students</h4> -->
+            <h4>Subjects</h4>
 
           </div>
         </div>
         <div class="managed-contents-two">
-          <div class="managed-contents-contents">
-            <div class="main-managed-contents">
-              <i class="fa-solid fa-user-tie"></i> 8
-
-            </div>
-            <h4>Faculties</h4>
+          <div class="managed-contents-contents"style="padding:0px">
+            <div class="container-2X2">
+  <div class="box">{{appln_approoved}} <h5>&nbsp; Approoved &nbsp&nbspApplications</h5></div>
+  <div class="box">{{appln_Submited}}<h5>&nbsp; Pending &nbsp&nbspApplications</h5></div>
+  <div class="box">{{appln_hod}}  <h5>&nbsp; Accepted &nbsp&nbspApplications</h5></div>
+  <div class="box">{{appln_Rejected}} <h5>&nbsp; Rejected &nbsp&nbspApplications</h5></div>
+</div>
 
           </div>
         </div>
@@ -60,7 +118,7 @@
         <div class="managed-contents-three">
           <div class="managed-contents-contents">
             <div class="main-managed-contents">
-            <i class="fa-solid fa-note"></i> 13
+            <i class="fa-regular fa-pen-to-square"></i>  {{appln_count}}
 
             </div>
             <h4>Applications</h4>
@@ -72,7 +130,8 @@
 <a href="{% url 'write_application_faculty' %}"style="color:white">
           <div class="managed-contents-contents">
             <div class="main-managed-contents">
-            <i class="fa-regular fa-pen-to-square"></i> 7
+
+            <i class="fa-solid fa-plus"></i>
 
             </div>
             <h4>Create Application</h4>
