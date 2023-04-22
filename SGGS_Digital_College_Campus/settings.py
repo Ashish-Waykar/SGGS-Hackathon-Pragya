@@ -77,7 +77,7 @@ TEMPLATES = [
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 WSGI_APPLICATION = 'SGGS_Digital_College_Campus.wsgi.application'
-AUTH_USER_MODEL = 'authentication.Account'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
